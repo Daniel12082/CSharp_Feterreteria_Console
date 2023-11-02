@@ -1,0 +1,14 @@
+C:\Users\APM02-042\Desktop\CSharp_Feterreteria_Console\bin\Debug\net7.0\CSharp_Feterreteria_Console.exe
+C:\Users\APM02-042\Desktop\CSharp_Feterreteria_Console\bin\Debug\net7.0\CSharp_Feterreteria_Console.deps.json
+C:\Users\APM02-042\Desktop\CSharp_Feterreteria_Console\bin\Debug\net7.0\CSharp_Feterreteria_Console.runtimeconfig.json
+C:\Users\APM02-042\Desktop\CSharp_Feterreteria_Console\bin\Debug\net7.0\CSharp_Feterreteria_Console.dll
+C:\Users\APM02-042\Desktop\CSharp_Feterreteria_Console\bin\Debug\net7.0\CSharp_Feterreteria_Console.pdb
+C:\Users\APM02-042\Desktop\CSharp_Feterreteria_Console\obj\Debug\net7.0\CSharp_Feterreteria_Console.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\APM02-042\Desktop\CSharp_Feterreteria_Console\obj\Debug\net7.0\CSharp_Feterreteria_Console.AssemblyInfoInputs.cache
+C:\Users\APM02-042\Desktop\CSharp_Feterreteria_Console\obj\Debug\net7.0\CSharp_Feterreteria_Console.AssemblyInfo.cs
+C:\Users\APM02-042\Desktop\CSharp_Feterreteria_Console\obj\Debug\net7.0\CSharp_Feterreteria_Console.csproj.CoreCompileInputs.cache
+C:\Users\APM02-042\Desktop\CSharp_Feterreteria_Console\obj\Debug\net7.0\CSharp_Feterreteria_Console.dll
+C:\Users\APM02-042\Desktop\CSharp_Feterreteria_Console\obj\Debug\net7.0\refint\CSharp_Feterreteria_Console.dll
+C:\Users\APM02-042\Desktop\CSharp_Feterreteria_Console\obj\Debug\net7.0\CSharp_Feterreteria_Console.pdb
+C:\Users\APM02-042\Desktop\CSharp_Feterreteria_Console\obj\Debug\net7.0\CSharp_Feterreteria_Console.genruntimeconfig.cache
+C:\Users\APM02-042\Desktop\CSharp_Feterreteria_Console\obj\Debug\net7.0\ref\CSharp_Feterreteria_Console.dll
