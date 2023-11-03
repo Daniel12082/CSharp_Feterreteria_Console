@@ -26,3 +26,6 @@ C:\Users\sobri\OneDrive\Escritorio\CSharp_Feterreteria_Console\obj\Debug\net7.0\
 C:\Users\sobri\OneDrive\Escritorio\CSharp_Feterreteria_Console\obj\Debug\net7.0\CSharp_Feterreteria_Console.pdb
 C:\Users\sobri\OneDrive\Escritorio\CSharp_Feterreteria_Console\obj\Debug\net7.0\CSharp_Feterreteria_Console.genruntimeconfig.cache
 C:\Users\sobri\OneDrive\Escritorio\CSharp_Feterreteria_Console\obj\Debug\net7.0\ref\CSharp_Feterreteria_Console.dll
+C:\Users\APM02-042\Desktop\CSharp_Feterreteria_Console\obj\Debug\net7.0\CSharp_Feterreteria_Console.csproj.AssemblyReference.cache
+C:\Users\APM02-042\Desktop\CSharp_Feterreteria_Console\obj\Debug\net7.0\CSharp_Feterreteria_Console.csproj.CopyComplete
+C:\Users\APM02-042\Desktop\CSharp_Feterreteria_Console\bin\Debug\net7.0\BetterConsoleTables.dll

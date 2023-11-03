@@ -5,6 +5,9 @@ using System.Linq;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using CSharp_Feterreteria_Console.Entities;
+using System.Drawing;
+using BetterConsoleTables;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CSharp_Feterreteria_Console.Features
 {
@@ -47,44 +50,51 @@ namespace CSharp_Feterreteria_Console.Features
         List<DetailBill> _detailBills = new(){
             new() { Id= 1, NroBill = 1234, IdProduct =1, Amount=4},
             new() { Id= 2, NroBill = 1234, IdProduct =2, Amount=2},
-            new() { Id= 3, NroBill = 1235,IdProduct =4, Amount=20},
-            new() { Id= 4, NroBill = 1234,IdProduct =5, Amount=10},
-            new() { Id= 5, NroBill = 1238,IdProduct =2, Amount=2},
+            new() { Id= 3, NroBill = 1243,IdProduct =4, Amount=20},
+            new() { Id= 4, NroBill = 1243,IdProduct =5, Amount=10},
+            new() { Id= 5, NroBill = 1242,IdProduct =2, Amount=2},
             new() { Id= 6, NroBill = 1239,IdProduct =7, Amount=24},
             new() { Id= 7, NroBill = 1240,IdProduct =11, Amount=10},
-            new() { Id= 8, NroBill = 1241,IdProduct =12, Amount=2},
-            new() { Id= 9, NroBill = 1242,IdProduct =2, Amount=4},
-            new() { Id= 10, NroBill = 1243,IdProduct =24, Amount=6}
+            new() { Id= 8, NroBill = 1238,IdProduct =12, Amount=2},
+            new() { Id= 9, NroBill = 1236,IdProduct =2, Amount=4},
+            new() { Id= 10, NroBill = 1242,IdProduct =24, Amount=6}
         };
         public void PrintInventories()
         {
             Console.WriteLine("LIST OF PRODUCTS");
-            Console.WriteLine("--------------------------------------------------");
-            _products.ForEach(x => Console.WriteLine($"ID:{x.Id} - Name:{x.Name} - Amount{x.Amount} - Price:{x.PriceUnit}"));
+            var table = new Table("ID","Name","Amount","Price");
+            _products.ForEach(x => table.AddRow(x.Id,x.Name,x.Amount,x.PriceUnit));
+            table.Config = TableConfiguration.UnicodeAlt();
+            Console.WriteLine(table.ToString());
         }
 
         public void PrintInvMinStock()
         {
             var PrInvMinStock = (from x in _products where x.Amount < x.StockMin select x).ToList();
             Console.WriteLine("PRODUCTS ABOUT TO RUN OUT");
-            Console.WriteLine("--------------------------------------------------");
-            PrInvMinStock.ForEach(x => Console.WriteLine($"ID:{x.Id}   Name:{x.Name}"));
+            var table = new Table("ID","Name");
+            PrInvMinStock.ForEach(x => table.AddRow(x.Id,x.Name));
+            table.Config = TableConfiguration.UnicodeAlt();
+            Console.WriteLine(table.ToString());
         }
 
         public void BuyProduct()
         {
             Console.WriteLine("PRODUCTS THAT NEED TO BE PURCHASED");
-            Console.WriteLine("--------------------------------------------------");
             var PrInvMinStock = (from x in _products where x.Amount < x.StockMin select x).ToList();
-            PrInvMinStock.ForEach(x => Console.WriteLine($"ID:{x.Id}    Name:{x.Name}   Acount:{x.Amount}   Buy:{x.StockMax - x.Amount}"));
+            var table = new Table("ID","Name","Amount","Buy");
+            PrInvMinStock.ForEach(x => table.AddRow(x.Id,x.Name,x.Amount,x.StockMax - x.Amount));
+            table.Config = TableConfiguration.UnicodeAlt();
+            Console.WriteLine(table.ToString());
         }
-
         public void CompareMonth()
         {
             var DateMin = (from x in _bills where x.Date.Month == 1 && x.Date.Year == 2023 select x).ToList();
             Console.WriteLine("Invoices from January 2023");
-            Console.WriteLine("--------------------------------------------------");
-            DateMin.ForEach(x => Console.WriteLine($"NroFact:{x.NroFact}   Date:{x.Date}   IdCustomer:{x.IdCustomer}   TotalBill:{x.TotalBill}"));
+            var table = new Table("Nro Bill","Date","ID Customer","TotalBill");
+            DateMin.ForEach(x => table.AddRow(x.NroFact,x.Date,x.IdCustomer,x.TotalBill));
+            table.Config = TableConfiguration.UnicodeAlt();
+            Console.WriteLine(table.ToString());
         }
 
         public void GetProductsFromReceipt()
@@ -108,7 +118,10 @@ namespace CSharp_Feterreteria_Console.Features
             if (_detailBills.Any(x => x.NroBill == number))
             {
                 Console.WriteLine($"The products of the receipt number {number}");
-                list.ForEach(z => Console.WriteLine($" ID PRODUCT{z.IdProduct} AMOUNT{z.Amount} NAME:{z.Name} PRICE UNITR{z.PriceUnit}, TOTAL{z.Total} "));
+                var table =  new Table("ID Product","Amount","Name","Price Unit","Total");
+                list.ForEach(x=> table.AddRow(x.IdProduct,x.Amount,x.Name,x.PriceUnit,x.Total));
+                table.Config = TableConfiguration.UnicodeAlt();
+                Console.WriteLine(table.ToString());
             } else {
                 Console.WriteLine($"The receipt number {number} does not exist");
             }
@@ -118,11 +131,14 @@ namespace CSharp_Feterreteria_Console.Features
         {
             var total = 0;
             Console.WriteLine("TOTAL INVENTORY");
+            var table = new Table("Name", "Amount", "Price Unit", "Total");
             foreach (var item in _products)
             {
-                Console.WriteLine($"Name: {item.Name} Amount: {item.Amount} Price Unit: {item.PriceUnit} total: {item.PriceUnit * item.Amount}");
+                table.AddRow(item.Name, item.Amount, item.PriceUnit, item.PriceUnit * item.Amount);
                 total += (item.Amount * item.PriceUnit);
             }
+            table.Config = TableConfiguration.UnicodeAlt();
+            Console.WriteLine(table.ToString());
             Console.WriteLine($"The total value of the inventory is: {total}");
         }
     }

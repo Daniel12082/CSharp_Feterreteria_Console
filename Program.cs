@@ -4,7 +4,7 @@ internal class Program
 {
 
     private static void Main(string[] args)
-    {
+        {
         var option = 0;
         while (option != 7){
         Console.Clear();

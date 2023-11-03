@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "LPuYUF6AViVhqhDWnTW0zaUxDVhpbdCmPS2Lms/KcAAgqhp7m41z527lMcg9Xfj2t9b95oecsNwGe6kmRJYfAA==",
+  "dgSpecHash": "r5cdjcYI6itygcpnSg4EJaZ7d6ztiiqglsaSvWpvY7LHaamtnvKL84lF8nQkI6/yKX/10PcEe37vQcri/OxhhA==",
   "success": true,
   "projectFilePath": "C:\\Users\\APM02-042\\Desktop\\CSharp_Feterreteria_Console\\CSharp_Feterreteria_Console.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\APM02-042\\.nuget\\packages\\betterconsoletables\\1.1.3\\betterconsoletables.1.1.3.nupkg.sha512"
+  ],
   "logs": []
 }
