@@ -57,6 +57,8 @@ namespace CSharp_Feterreteria_Console.Features
             new() { Id= 10, NroBill = 1243,IdProduct =24, Amount=6}
         };
         public void PrintInventories (){
+            Console.WriteLine("LISTA DE PRODUCTOS");
+            Console.WriteLine("--------------------------------------------------");
             _products.ForEach(x =>Console.WriteLine($"ID:{x.Id} - Name:{x.Name} - Amount{x.Amount} - Price:{x.PriceUnit}"));
         }
         public void PrintInvMinStock(){
@@ -66,13 +68,15 @@ namespace CSharp_Feterreteria_Console.Features
             PrInvMinStock.ForEach(x =>Console.WriteLine($"ID:{x.Id}   Name:{x.Name}"));
         }
         public void BuyProduct(){
+            Console.WriteLine("PRODUCTOR QUE DEBEN COMPRARSE");
+            Console.WriteLine("--------------------------------------------------");
             var PrInvMinStock = (from x in _products where x.Amount < x.StockMin select x).ToList();
             PrInvMinStock.ForEach(x =>Console.WriteLine($"ID:{x.Id}    Name:{x.Name}   Acount:{x.Amount}   Buy:{x.StockMax-x.Amount}"));
         }
         public void CompareMonth()
         {
             var DateMin = (from x in _bills where x.Date.Month == 1 && x.Date.Year == 2023 select x).ToList();
-            Console.WriteLine("Factura del mes de enero 2023");
+            Console.WriteLine("Facturas del mes de enero 2023");
             Console.WriteLine("--------------------------------------------------");
             DateMin.ForEach(x => Console.WriteLine($"NroFact:{x.NroFact}   Date:{x.Date}   IdCustomer:{x.IdCustomer}   TotalBill:{x.TotalBill}"));
         }
