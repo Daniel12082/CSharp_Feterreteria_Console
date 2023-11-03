@@ -33,15 +33,15 @@ namespace CSharp_Feterreteria_Console.Features
             new(){Id=20, Name="rake", PriceUnit=350, Amount=400, StockMax=1, StockMin=200},
         };
         List<Bill> _bills = new(){
-            new(){ NroFact =1234,Date = new DateOnly(2023, 11, 1), IdCustomer = 1, TotalBill=5000},
-            new Bill { NroFact = 1235, Date = new DateOnly(2023, 11, 1), IdCustomer = 2, TotalBill = 6000 },
-            new Bill { NroFact = 1236, Date = new DateOnly(2020, 01, 3), IdCustomer = 3, TotalBill = 7000 },
-            new Bill { NroFact = 1237, Date = new DateOnly(2023, 02, 4), IdCustomer = 4, TotalBill = 8000 },
-            new Bill { NroFact = 1238, Date = new DateOnly(2023, 03, 7), IdCustomer = 5, TotalBill = 9000 },
-            new Bill { NroFact = 1239, Date = new DateOnly(2023, 11, 6), IdCustomer = 6, TotalBill = 10000 },
-            new Bill { NroFact = 1240, Date = new DateOnly(2023, 05, 8), IdCustomer = 7, TotalBill = 11000 },
-            new Bill { NroFact = 1241, Date = new DateOnly(2023, 11, 8), IdCustomer = 8, TotalBill = 12000 },
-            new Bill { NroFact = 1242, Date = new DateOnly(2023, 02, 25), IdCustomer = 9, TotalBill = 13000 },
+            new(){ NroFact =1234,Date = new DateOnly(2023, 11, 01), IdCustomer = 1, TotalBill=5000},
+            new Bill { NroFact = 1235, Date = new DateOnly(2023, 11, 01), IdCustomer = 2, TotalBill = 6000 },
+            new Bill { NroFact = 1236, Date = new DateOnly(2023, 01, 03), IdCustomer = 3, TotalBill = 7000 },
+            new Bill { NroFact = 1237, Date = new DateOnly(2022, 02, 04), IdCustomer = 4, TotalBill = 8000 },
+            new Bill { NroFact = 1238, Date = new DateOnly(2023, 03, 07), IdCustomer = 5, TotalBill = 9000 },
+            new Bill { NroFact = 1239, Date = new DateOnly(2015, 11, 06), IdCustomer = 6, TotalBill = 10000 },
+            new Bill { NroFact = 1240, Date = new DateOnly(2023, 05, 08), IdCustomer = 7, TotalBill = 11000 },
+            new Bill { NroFact = 1241, Date = new DateOnly(2018, 11, 08), IdCustomer = 8, TotalBill = 12000 },
+            new Bill { NroFact = 1242, Date = new DateOnly(2023, 01, 25), IdCustomer = 9, TotalBill = 13000 },
             new Bill { NroFact = 1243, Date = new DateOnly(2023, 11, 10), IdCustomer = 10, TotalBill = 14000 }
         };
         List<DetailBill> _detailBills = new(){
@@ -69,9 +69,20 @@ namespace CSharp_Feterreteria_Console.Features
             var PrInvMinStock = (from x in _products where x.Amount < x.StockMin select x).ToList();
             PrInvMinStock.ForEach(x =>Console.WriteLine($"ID:{x.Id}    Name:{x.Name}   Acount:{x.Amount}   Buy:{x.StockMax-x.Amount}"));
         }
-        public void CompareMonth(){
-            var Date = new DateTime.
-            var Month = (from x in _bills where x.Date  )
+        public void CompareMonth()
+        {
+            var DateMin = (from x in _bills where x.Date.Month == 1 && x.Date.Year == 2023 select x).ToList();
+            Console.WriteLine("Factura del mes de enero 2023");
+            Console.WriteLine("--------------------------------------------------");
+            DateMin.ForEach(x => Console.WriteLine($"NroFact:{x.NroFact}   Date:{x.Date}   IdCustomer:{x.IdCustomer}   TotalBill:{x.TotalBill}"));
+        }
+        public void TotalInventory()
+        {
+            var total= 0;
+            foreach (var item in _products){
+                total += (item.Amount*item.PriceUnit);
+            }
+            Console.WriteLine($"El valor total del inventario es: {total}");
         }
     }
 }

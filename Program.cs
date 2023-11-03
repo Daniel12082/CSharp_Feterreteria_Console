@@ -9,6 +9,8 @@ internal class Program
         LinQ Function = new LinQ();
         // Function.PrintInventories();
         // Function.PrintInvMinStock();
-        Function.BuyProduct();
+        // Function.BuyProduct();
+        // Function.CompareMonth();
+        Function.TotalInventory();
     }
 }
