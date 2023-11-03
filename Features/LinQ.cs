@@ -83,7 +83,9 @@ namespace CSharp_Feterreteria_Console.Features
         public void TotalInventory()
         {
             var total= 0;
+            Console.WriteLine("TOTAL DE INVENTARIO");
             foreach (var item in _products){
+                Console.WriteLine($"Name: {item.Name} Amount: {item.Amount} Price Unit: {item.PriceUnit} total: {item.PriceUnit*item.Amount}");
                 total += (item.Amount*item.PriceUnit);
             }
             Console.WriteLine($"El valor total del inventario es: {total}");

@@ -5,6 +5,8 @@ internal class Program
 
     private static void Main(string[] args)
     {
+        var option = 0;
+        while (option != 7){
         Console.Clear();
         LinQ Function = new LinQ();
         Console.WriteLine("Menu Ferreterias");
@@ -16,39 +18,53 @@ internal class Program
         Console.WriteLine("6. Total De Inventario");
         Console.WriteLine("7. Salir");
         Console.WriteLine("Ingrese Una Opcion");
-        int option = Convert.ToInt32(Console.ReadLine());
+        option = Convert.ToInt32(Console.ReadLine());
         switch(option)
         {
             case 1:
+                Console.Clear();
                 Function.PrintInventories();
+                Console.WriteLine("\nPresione Enter Para Continuar");
+                Console.ReadKey();
                 break;
             case 2:
+                Console.Clear();
                 Function.PrintInvMinStock();
+                Console.WriteLine("\nPresione Enter Para Continuar");
+                Console.ReadKey();
                 break;
             case 3:
+                Console.Clear();
                 Function.BuyProduct();
+                Console.WriteLine("\nPresione Enter Para Continuar");
+                Console.ReadKey();
                 break;
             case 4:
+                Console.Clear();
                 Function.CompareMonth();
+                Console.WriteLine("\nPresione Enter Para Continuar");
+                Console.ReadKey();
                 break;
             case 5:
-                Function.DetailBill();
+                Console.Clear();
+                // Function.DetailBill();
                 break;
             case 6:
+                Console.Clear();
                 Function.TotalInventory();
+                Console.WriteLine("\nPresione Enter Para Continuar");
+                Console.ReadKey();
                 break;
             case 7:
+                Console.Clear();
                 Console.WriteLine("Gracias Por Usar El Programa");
+                Console.WriteLine("\nPresione Enter Para Continuar");
+                Console.ReadKey();
                 break;
             default:
                 Console.WriteLine("Opcion No Valida");
                 break;
-        
         }
-        // Function.PrintInventories();
-        // Function.PrintInvMinStock();
-        // Function.BuyProduct();
-        // Function.CompareMonth();
-        // Function.TotalInventory();
+        }
     }
 }
