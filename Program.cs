@@ -5,7 +5,8 @@ internal class Program
 
     private static void Main(string[] args)
         {
-        var option = 0;
+        try{
+            var option = 0;
         while (option != 7){
         Console.Clear();
         LinQ Function = new LinQ();
@@ -67,6 +68,10 @@ internal class Program
                 Console.WriteLine("Invalid Option");
                 break;
             }
+        }
+        
+        }catch(Exception){
+            Console.WriteLine("Invalid Option");
         }
     }
 }
