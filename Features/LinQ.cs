@@ -47,7 +47,7 @@ namespace CSharp_Feterreteria_Console.Features
         List<DetailBill> _detailBills = new(){
             new() { Id= 1, NroBill = 1234, IdProduct =1, Amount=4},
             new() { Id= 2, NroBill = 1234, IdProduct =2, Amount=2},
-            new() { Id= 3, NroBill = 1234,IdProduct =4, Amount=20},
+            new() { Id= 3, NroBill = 1235,IdProduct =4, Amount=20},
             new() { Id= 4, NroBill = 1234,IdProduct =5, Amount=10},
             new() { Id= 5, NroBill = 1238,IdProduct =2, Amount=2},
             new() { Id= 6, NroBill = 1239,IdProduct =7, Amount=24},
@@ -56,39 +56,74 @@ namespace CSharp_Feterreteria_Console.Features
             new() { Id= 9, NroBill = 1242,IdProduct =2, Amount=4},
             new() { Id= 10, NroBill = 1243,IdProduct =24, Amount=6}
         };
-        public void PrintInventories (){
-            Console.WriteLine("LISTA DE PRODUCTOS");
+        public void PrintInventories()
+        {
+            Console.WriteLine("LIST OF PRODUCTS");
             Console.WriteLine("--------------------------------------------------");
-            _products.ForEach(x =>Console.WriteLine($"ID:{x.Id} - Name:{x.Name} - Amount{x.Amount} - Price:{x.PriceUnit}"));
+            _products.ForEach(x => Console.WriteLine($"ID:{x.Id} - Name:{x.Name} - Amount{x.Amount} - Price:{x.PriceUnit}"));
         }
-        public void PrintInvMinStock(){
+
+        public void PrintInvMinStock()
+        {
             var PrInvMinStock = (from x in _products where x.Amount < x.StockMin select x).ToList();
-            Console.WriteLine("PRODUCTOS A PUNTO DE AGOTARSE");
+            Console.WriteLine("PRODUCTS ABOUT TO RUN OUT");
             Console.WriteLine("--------------------------------------------------");
-            PrInvMinStock.ForEach(x =>Console.WriteLine($"ID:{x.Id}   Name:{x.Name}"));
+            PrInvMinStock.ForEach(x => Console.WriteLine($"ID:{x.Id}   Name:{x.Name}"));
         }
-        public void BuyProduct(){
-            Console.WriteLine("PRODUCTOR QUE DEBEN COMPRARSE");
+
+        public void BuyProduct()
+        {
+            Console.WriteLine("PRODUCTS THAT NEED TO BE PURCHASED");
             Console.WriteLine("--------------------------------------------------");
             var PrInvMinStock = (from x in _products where x.Amount < x.StockMin select x).ToList();
-            PrInvMinStock.ForEach(x =>Console.WriteLine($"ID:{x.Id}    Name:{x.Name}   Acount:{x.Amount}   Buy:{x.StockMax-x.Amount}"));
+            PrInvMinStock.ForEach(x => Console.WriteLine($"ID:{x.Id}    Name:{x.Name}   Acount:{x.Amount}   Buy:{x.StockMax - x.Amount}"));
         }
+
         public void CompareMonth()
         {
             var DateMin = (from x in _bills where x.Date.Month == 1 && x.Date.Year == 2023 select x).ToList();
-            Console.WriteLine("Facturas del mes de enero 2023");
+            Console.WriteLine("Invoices from January 2023");
             Console.WriteLine("--------------------------------------------------");
             DateMin.ForEach(x => Console.WriteLine($"NroFact:{x.NroFact}   Date:{x.Date}   IdCustomer:{x.IdCustomer}   TotalBill:{x.TotalBill}"));
         }
+
+        public void GetProductsFromReceipt()
+        {
+            Console.WriteLine("Put the number of the receipt: ");
+            int number = Convert.ToInt32(Console.ReadLine());
+            var list = (from q in _detailBills
+                        join w in _detailBills
+                        on q.NroBill equals w.NroBill
+                        join e in _products on q.IdProduct equals e.Id
+                        where w.NroBill == number
+                        select new
+                        {
+                            IdProduct = q.IdProduct,
+                            Amount = q.Amount,
+                            Bill = q.NroBill,
+                            Name = e.Name,
+                            PriceUnit = e.PriceUnit,
+                            Total = q.Amount * e.PriceUnit
+                        }).ToList();
+            if (_detailBills.Any(x => x.NroBill == number))
+            {
+                Console.WriteLine($"The products of the receipt number {number}");
+                list.ForEach(z => Console.WriteLine($" ID PRODUCT{z.IdProduct} AMOUNT{z.Amount} NAME:{z.Name} PRICE UNITR{z.PriceUnit}, TOTAL{z.Total} "));
+            } else {
+                Console.WriteLine($"The receipt number {number} does not exist");
+            }
+        }
+
         public void TotalInventory()
         {
-            var total= 0;
-            Console.WriteLine("TOTAL DE INVENTARIO");
-            foreach (var item in _products){
-                Console.WriteLine($"Name: {item.Name} Amount: {item.Amount} Price Unit: {item.PriceUnit} total: {item.PriceUnit*item.Amount}");
-                total += (item.Amount*item.PriceUnit);
+            var total = 0;
+            Console.WriteLine("TOTAL INVENTORY");
+            foreach (var item in _products)
+            {
+                Console.WriteLine($"Name: {item.Name} Amount: {item.Amount} Price Unit: {item.PriceUnit} total: {item.PriceUnit * item.Amount}");
+                total += (item.Amount * item.PriceUnit);
             }
-            Console.WriteLine($"El valor total del inventario es: {total}");
+            Console.WriteLine($"The total value of the inventory is: {total}");
         }
     }
 }
